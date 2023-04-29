@@ -8,10 +8,9 @@ public class Department {
     private String name;
     private List<Employee> employees = new ArrayList<>();
 
-    public Department(Long id, String name, List<Employee> employees) {
+    public Department(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.employees = employees;
     }
 
     public Long getId() {
