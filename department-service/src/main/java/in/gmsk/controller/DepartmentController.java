@@ -1,5 +1,6 @@
 package in.gmsk.controller;
 
+import in.gmsk.client.EmployeeClient;
 import in.gmsk.entity.Department;
 import in.gmsk.repository.DepartmentRepository;
 import org.slf4j.Logger;
@@ -19,6 +20,9 @@ public class DepartmentController {
     @Autowired
     private DepartmentRepository repository;
 
+    @Autowired
+    private EmployeeClient employeeClient;
+
     @PostMapping("/save")
     public Department add(@RequestBody Department department){
         LOGGER.info("Department save : {}", department);
@@ -35,5 +39,16 @@ public class DepartmentController {
     public Department findById(@PathVariable Long id){
         LOGGER.info("Department findById : {}", id);
         return repository.findById(id);
+    }
+
+    @GetMapping("/with-employees")
+    public List<Department> findAllWithEmployees(){
+        LOGGER.info("Department findAllWithEmployees");
+        List<Department> departments
+                = repository.findAll();
+        departments.forEach(department ->
+                department.setEmployees(
+                        employeeClient.findByDepartment(department.getId())));
+        return departments;
     }
 }
