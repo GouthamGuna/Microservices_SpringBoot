@@ -18,7 +18,7 @@ public class StaffController {
     public StaffController(StaffService staffService) {
         this.staffService = staffService;
     }
-    @GetMapping("/periodlist")
+    @GetMapping("/period-list")
     public List<Staff> getStaffPeriodsDetails(){
         return staffService.getStaffPeriodsDetails().toList();
     }
