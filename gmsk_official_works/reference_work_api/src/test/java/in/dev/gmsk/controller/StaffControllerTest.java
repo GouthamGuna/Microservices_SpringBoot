@@ -38,4 +38,16 @@ class StaffControllerTest {
 
         System.out.println( "staffTimeSheetById = " + staffTimeSheetById );
     }
+
+    @Test
+    void getAllStaffListByTeacherClassTeacher() {
+
+        ResponseEntity<List<Staff>> allStaffListByTeacherClassTeacher =
+                staffController.getAllStaffListByTeacherClassTeacher();
+
+        assertNotNull( allStaffListByTeacherClassTeacher );
+
+        System.out.println( "allStaffListByTeacherClassTeacher = " +
+                allStaffListByTeacherClassTeacher );
+    }
 }
