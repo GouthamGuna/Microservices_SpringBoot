@@ -36,4 +36,8 @@ public class StaffController {
                         locationId, academicYearId).toList(), HttpStatus.OK
         );
     }
-}
+    @GetMapping("/staff-list")
+    public ResponseEntity<List<Staff>> getAllStaffListByTeacherClassTeacher(){
+        return new ResponseEntity<>( staffService.getAllStaffListByTeacherClassTeacher().toList(), HttpStatus.OK );
+    }
+ }
