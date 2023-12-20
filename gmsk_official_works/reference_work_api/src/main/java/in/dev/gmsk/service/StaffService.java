@@ -9,4 +9,6 @@ public interface StaffService {
     Stream<Staff> getStaffPeriodsDetails();
 
     Stream<Staff> getStaffTimeSheetById(String staffId, String locationId, String academicYearId);
+
+    Stream<Staff> getAllStaffListByTeacherClassTeacher();
 }
