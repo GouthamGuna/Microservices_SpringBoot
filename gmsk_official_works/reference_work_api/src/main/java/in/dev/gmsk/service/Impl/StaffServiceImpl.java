@@ -26,4 +26,9 @@ public class StaffServiceImpl implements StaffService {
     public Stream<Staff> getStaffTimeSheetById(String staffId, String locationId, String academicYearId) {
         return staffRepo.getStaffTimeSheetById( staffId, locationId, academicYearId);
     }
+
+    @Override
+    public Stream<Staff> getAllStaffListByTeacherClassTeacher() {
+        return staffRepo.getAllStaffListByTeacherClassTeacher();
+    }
 }
