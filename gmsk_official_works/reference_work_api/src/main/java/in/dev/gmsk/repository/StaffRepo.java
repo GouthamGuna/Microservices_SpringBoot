@@ -76,4 +76,20 @@ public class StaffRepo {
 
         return staffList.parallelStream();
     }
+
+    public Stream<Staff> getAllStaffListByTeacherClassTeacher(){
+
+        String query = StaffSQLConstant.getStaffListTeacherClassTeacher;
+
+        List<Staff> returnList = jdbcTemplate.query( query, (rs, rn) -> {
+
+            Staff staff = new Staff();
+            staff.setStaffId( rs.getString( "id" ) );
+            staff.setStaffName( rs.getString( "staffName" ) );
+
+            return staff;
+        } );
+
+        return returnList.parallelStream();
+    }
 }
