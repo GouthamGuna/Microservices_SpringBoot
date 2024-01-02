@@ -1,7 +1,6 @@
 package in.dev.gmsk.controller;
 
 import in.dev.gmsk.model.Staff;
-import in.dev.gmsk.response.WarningMessage;
 import in.dev.gmsk.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/staff")
@@ -21,7 +21,7 @@ public class StaffController {
     }
     @GetMapping("/period-list")
     public List<Staff> getStaffPeriodsDetails(){
-        return staffService.getStaffPeriodsDetails().toList();
+        return staffService.getStaffPeriodsDetails().collect( Collectors.toList());
     }
 
     @GetMapping("/time-sheet")
@@ -30,11 +30,12 @@ public class StaffController {
 
         return new ResponseEntity<>(
                 staffService.getStaffTimeSheetById(staffId,
-                        locationId, academicYearId).toList(), HttpStatus.OK
+                        locationId, academicYearId).collect( Collectors.toList()), HttpStatus.OK
         );
     }
     @GetMapping("/staff-list")
     public ResponseEntity<List<Staff>> getAllStaffListByTeacherClassTeacher(){
-        return new ResponseEntity<>( staffService.getAllStaffListByTeacherClassTeacher().toList(), HttpStatus.OK );
+        return new ResponseEntity<>(
+                staffService.getAllStaffListByTeacherClassTeacher().collect( Collectors.toList()), HttpStatus.OK );
     }
  }
