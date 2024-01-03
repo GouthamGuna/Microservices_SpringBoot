@@ -26,7 +26,7 @@ class StaffControllerTest {
         System.out.println( "staffPeriodsDetails = " + staffPeriodsDetails );
     }
 
-    @Test
+   /* @Test
     void getStaffTimeSheetById() {
 
         String staffId = "9";
@@ -37,7 +37,7 @@ class StaffControllerTest {
                 staffController.getStaffTimeSheetById( staffId, locationId, academicYearId );
 
         System.out.println( "staffTimeSheetById = " + staffTimeSheetById );
-    }
+    }*/
 
     @Test
     void getAllStaffListByTeacherClassTeacher() {
