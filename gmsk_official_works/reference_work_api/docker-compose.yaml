@@ -4,7 +4,7 @@ services:
   app:
     image: ggowthamsankar/reference_api:latest
     ports:
-      - 8080:8080
+      - "8080:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mariadb://db:4307/test_school_new?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: admin
@@ -21,4 +21,4 @@ services:
     volumes:
       - \\\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes\shared_data\\_data
     ports:
-      - 4307:3306
+      - "4307:3306"
