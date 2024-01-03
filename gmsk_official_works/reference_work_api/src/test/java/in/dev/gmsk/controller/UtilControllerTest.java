@@ -16,7 +16,7 @@ class UtilControllerTest {
         this.utilController = utilController;
     }
 
-    @Test
+   /* @Test
     void fileDataReader() {
 
         String filePath = "D:\\work\\vs_code_ws\\data_reader_fn\\README.md";
@@ -27,5 +27,5 @@ class UtilControllerTest {
                 utilController.fileDataReader( url );
 
         System.out.println( "stringResponseEntity = " + stringResponseEntity );
-    }
+    }*/
 }
