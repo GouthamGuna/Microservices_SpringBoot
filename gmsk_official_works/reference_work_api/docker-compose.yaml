@@ -6,8 +6,8 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mariadb://db:4307/test_school_new?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
-      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/test_school_new?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: secret
     depends_on:
       - db
@@ -16,9 +16,9 @@ services:
     environment:
       DATABASE_HOST: localhost
       MYSQL_DATABASE: test_school_new
-      MYSQL_USER: admin
+      MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: secret
     volumes:
       - \\\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes\shared_data\\_data
     ports:
-      - "4307:3306"
+      - "3306:3306"
