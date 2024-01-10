@@ -36,6 +36,7 @@ public class StaffController {
     @GetMapping("/staff-list")
     public ResponseEntity<List<Staff>> getAllStaffListByTeacherClassTeacher(){
         return new ResponseEntity<>(
-                staffService.getAllStaffListByTeacherClassTeacher().collect( Collectors.toList()), HttpStatus.OK );
+                staffService.getAllStaffListByTeacherClassTeacher()
+                        .collect( Collectors.toList()), HttpStatus.OK );
     }
  }
