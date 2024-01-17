@@ -1,23 +1,28 @@
-package in.dev.gmsk.repository;
+package in.dev.gmsk.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "dummy-student-tbl")
+@Table(name = "dummy_student_tbl")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long primaryKey;
-    @NotBlank(message = "vehicle reg.no shouldn't be empty")
     private String firstName;
     private String lastName;
     private String dob;
     private String gender;
     private String admissionNo;
+    private String address;
     private String mobileNo;
     private String EmailId;
     private String fatherName;
