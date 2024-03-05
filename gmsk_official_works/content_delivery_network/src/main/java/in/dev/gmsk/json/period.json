@@ -1,0 +1,35 @@
+{
+    "list": {
+        "Monday": [
+            {
+                "subjectname": "Hindi",
+                "classname": "I",
+                "dayname": "Monday",
+                "periodParticular": "Period 5",
+                "specname": " ",
+                "staffname": "BHARGAVI  ",
+                "sectionname": "A"
+            },
+            {
+                "subjectname": "Hindi",
+                "classname": "I",
+                "dayname": "Monday",
+                "periodParticular": "Period 6",
+                "specname": " ",
+                "staffname": "BHARGAVI  ",
+                "sectionname": "A"
+            }
+        ],
+        "Friday": [
+            {
+                "subjectname": "Hindi",
+                "classname": "I",
+                "dayname": "Friday",
+                "periodParticular": "Period 6",
+                "specname": " ",
+                "staffname": "BHARGAVI  ",
+                "sectionname": "A"
+            }
+        ]
+    }
+}
