@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-app-service
+spec:
+  selector:
+    app: k8s-demo  # FIXED: Match the deployment label (with hyphen)
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: NodePort
