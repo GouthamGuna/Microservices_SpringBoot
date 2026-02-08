@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio-app
+  namespace: minio-dev
+  labels:
+    app: minio-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio-app
+  template:
+    metadata:
+      labels:
+        app: minio-app
+    spec:
+      containers:
+        - name: minio-server
+          image: minio/minio:RELEASE.2025-09-07T16-13-09Z-cpuv1
+          imagePullPolicy: IfNotPresent
+
+          command:
+            - minio
+            - server
+            - /data
+            - --console-address
+            - ":9001"
+
+          envFrom:
+            - secretRef:
+                name: minio-secret-dev
+
+          ports:
+            - containerPort: 9000
+            - containerPort: 9001
+
+          volumeMounts:
+            - mountPath: /data
+              name: minio-storage
+
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "1"
+
+          livenessProbe:
+            httpGet:
+              path: /minio/health/live
+              port: 9000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /minio/health/ready
+              port: 9000
+            initialDelaySeconds: 15
+            periodSeconds: 5
+
+      volumes:
+        - name: minio-storage
+          persistentVolumeClaim:
+            claimName: minio-pvc
