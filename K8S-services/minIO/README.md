@@ -101,3 +101,35 @@ kubectl port-forward svc/minio-app-service 9001:9001 -n minio-dev
 ping minio.local
 http://minio.127.0.0.1.sslip.io
 ```
+
+# ⭐ When You Change a Kubernetes Secret — What Needs Restart? (Recommended Command)
+
+```
+kubectl delete secret minio-secret-dev -n minio-dev
+
+kubectl rollout restart deployment minio-app -n minio-dev
+```
+
+This will:
+
+ ✔ Restart pods safely
+ ✔ Pull new secret values
+ ✔ Zero downtime (if replicas > 1)
+
+---
+
+# 🧠 What Happens Internally
+
+```
+Secret Updated
+   ↓
+Deployment Restart Triggered
+   ↓
+New Pods Created
+   ↓
+Pods Load New Secret Values
+   ↓
+Old Pods Terminated
+```
+
+---
