@@ -157,3 +157,22 @@ kubectl apply -f ingress.yml
 # 4. Verify
 kubectl get pods,pvc -n minio-dev
 ```
+
+# Check Resources in Namespace
+```
+# Check all resources in the namespace
+kubectl get all -n minio-dev
+
+# Check specific resource types
+kubectl get pods -n minio-dev
+kubectl get deployments -n minio-dev
+kubectl get services -n minio-dev
+kubectl get statefulsets -n minio-dev
+kubectl get daemonsets -n minio-dev
+kubectl get jobs -n minio-dev
+kubectl get cronjobs -n minio-dev
+kubectl get configmaps -n minio-dev
+kubectl get secrets -n minio-dev
+kubectl get pvc -n minio-dev  # PersistentVolumeClaims
+kubectl get ingress -n minio-dev
+```
