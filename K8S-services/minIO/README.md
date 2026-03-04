@@ -70,11 +70,15 @@ kubectl create secret generic minio-secret-dev --from-env-file=minio-secret-dev.
 ```
 kubectl apply -f namespace.yml        (if using)
 kubectl apply -f secret.yml           (if using)
+kubectl apply -f pv.yml               ⚠️ NEW: PersistentVolume for existing data
 kubectl apply -f pvc.yml
 kubectl apply -f deployment.yml
 kubectl apply -f service.yml
 kubectl apply -f ingress.yml
 ```
+
+⚠️ **IMPORTANT: Docker to K8s Migration**
+If migrating from Docker with existing data, see [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md) for detailed instructions.
 
 🧠 Internal Networking Flow (Now)
 ```
@@ -88,7 +92,7 @@ MinIO Pod
    ↓
 PVC Storage
    ↓
-Local Path Provisioner
+PersistentVolume (HostPath: /path/ggs/minio/data)
 ```
 ✅ Quick Checklist (Run These Now)
 ```
@@ -132,4 +136,24 @@ Pods Load New Secret Values
 Old Pods Terminated
 ```
 
----
+After migrating 🚀 Quick Start:
+```
+# 1. Stop Docker container
+docker stop minio_server && docker rm minio_server
+
+# 2. Create secret
+kubectl create secret generic minio-secret-dev \
+  --from-literal=MINIO_ROOT_USER=minioadmin \
+  --from-literal=MINIO_ROOT_PASSWORD=minioadmin \
+  -n minio-dev
+
+# 3. Deploy (in order)
+kubectl apply -f pv.yml
+kubectl apply -f pvc.yml
+kubectl apply -f deployment.yml
+kubectl apply -f service.yml
+kubectl apply -f ingress.yml
+
+# 4. Verify
+kubectl get pods,pvc -n minio-dev
+```

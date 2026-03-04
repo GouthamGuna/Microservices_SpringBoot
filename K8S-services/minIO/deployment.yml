@@ -16,8 +16,8 @@ spec:
         app: minio-app
     spec:
       containers:
-        - name: minio-server
-          image: minio/minio:RELEASE.2025-09-07T16-13-09Z-cpuv1
+        - name: minio-dev-server
+          image: minio/minio:latest
           imagePullPolicy: IfNotPresent
 
           command:
@@ -51,15 +51,19 @@ spec:
             httpGet:
               path: /minio/health/live
               port: 9000
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
 
           readinessProbe:
             httpGet:
               path: /minio/health/ready
               port: 9000
-            initialDelaySeconds: 15
+            initialDelaySeconds: 30
             periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 3
 
       volumes:
         - name: minio-storage

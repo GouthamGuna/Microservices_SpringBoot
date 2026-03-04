@@ -8,5 +8,6 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
-  storageClassName: local-path
+      storage: 50Gi
+  storageClassName: manual
+  volumeName: minio-pv
